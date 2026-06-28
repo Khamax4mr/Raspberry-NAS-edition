@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eu
-source drive_common.sh
+source module/drive_common.sh
 
 readonly PG_NAME="Raspberry-Drive Installer"
 readonly BASE_PATH="/usr/local/share/raspberry-drive"
@@ -41,13 +41,15 @@ _main() {
 
   # create drive base
   _echo_info "creating raspberry-drive base ..."
-  if [[ ! -e "$BASE_PATH" ]]; then
-    mkdir "$BASE_PATH"
-    chmod 750 "$BASE_PATH"
-    chown "$USER_NAME" "$BASE_PATH"
-  else
+  if [[ -e "$BASE_PATH" ]]; then
     _echo_warn "raspberry-drive base already exists"
+  else
+    mkdir "$BASE_PATH"
   fi
+
+  # copy drive script
+  _echo_info "copying raspberry-drive script ..."
+  cp -r module "$BASE_PATH"
 }
 
 _main "$@"

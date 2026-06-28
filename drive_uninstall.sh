@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eu
-source drive_common.sh
+source module/drive_common.sh
 
 readonly PG_NAME="Raspberry-Drive Uninstaller"
 readonly BASE_PATH="/usr/local/share/raspberry-drive"
